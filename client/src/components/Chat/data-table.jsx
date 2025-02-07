@@ -100,7 +100,7 @@ export function DataTable({ columns, data }) {
       Date: format(new Date(item.date), "dd/MM/yyyy"),
       Name: item.name,
       Stream: item.stream,
-      "Mobile No. ": item.mobileNo,
+      mobileNo: item.mobileNo,
       "Area of Interest": item.areaOfInterest,
       "Mode of Communication": item.modeOfCommunication,
     }));
@@ -116,7 +116,7 @@ export function DataTable({ columns, data }) {
       let formattedDate = "";
 
       if (item["Date"]) {
-        const dateParts = item["Date"].split(".");
+        const dateParts = item["Date"].split("/");
         if (dateParts.length === 3) {
           formattedDate = `${dateParts[2]}-${dateParts[1].padStart(
             2,
@@ -124,9 +124,13 @@ export function DataTable({ columns, data }) {
           )}-${dateParts[0].padStart(2, "0")}`;
         }
       }
-      const mobileNo = item["Mobile No."]
-        ? item["Mobile No."].toString().replace(/\s+/g, "").trim()
+
+      console.log("item", item);
+      const mobileNo = item["mobileNo"]
+
+        ? item["mobileNo"].toString().trim()
         : "";
+
       return {
         serialNumber: index + 1,
         date: formattedDate || "",
@@ -173,7 +177,9 @@ export function DataTable({ columns, data }) {
             console.error("API Error:", response.error);
             alert("Failed to import data. Please check the file format.");
           } else {
-            toast.success("Data imported successfully.");
+            setTimeout(() => {
+              toast.success("Data imported successfully.");
+            }, 2000);
             navigate(0);
           }
         } catch (error) {
@@ -186,6 +192,7 @@ export function DataTable({ columns, data }) {
       reader.readAsArrayBuffer(file);
     }
   };
+
 
   return (
     <div className="rounded-md ">

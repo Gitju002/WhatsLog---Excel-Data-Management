@@ -53,6 +53,7 @@ const chatApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Chat"],
     }),
     deleteChat: builder.mutation({
       query: (id) => ({

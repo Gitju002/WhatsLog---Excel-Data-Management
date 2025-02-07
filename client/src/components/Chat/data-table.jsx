@@ -45,7 +45,7 @@ export function DataTable({ columns, data }) {
         params.set("search", searchField);
       }
       setSearchParams(params);
-    }, 500);
+    }, 300);
     return () => clearTimeout(debouncedSearch);
   }, [search, searchField, searchParams, setSearchParams]);
 
@@ -199,7 +199,8 @@ export function DataTable({ columns, data }) {
       <div className="flex items-center justify-between ">
         <div className="relative  rounded-md shadow-sm w-1/3 mb-6 ">
           <Input
-            placeholder="Search"
+            placeholder="Search by Name or Mobile No.
+"
             className="pr-10 border  border-gray-300 focus-visible:ring-0"
             value={searchField}
             onChange={(e) => {

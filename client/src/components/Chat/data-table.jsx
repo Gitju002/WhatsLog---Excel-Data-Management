@@ -96,10 +96,11 @@ export function DataTable({ columns, data }) {
   const exportToExcel = () => {
     const currentData = data;
     const formattedData = currentData.map((item) => ({
-      "Serial Number": item.serialNumber,
+      "Sl. No.": item.serialNumber,
       Date: format(new Date(item.date), "dd/MM/yyyy"),
       Name: item.name,
-      "Mobile No": item.mobileNo,
+      Stream: item.stream,
+      "Mobile No. ": item.mobileNo,
       "Area of Interest": item.areaOfInterest,
       "Mode of Communication": item.modeOfCommunication,
     }));
@@ -239,9 +240,9 @@ export function DataTable({ columns, data }) {
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   );
                 })}

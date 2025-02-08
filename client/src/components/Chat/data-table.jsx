@@ -116,7 +116,7 @@ export function DataTable({ columns, data }) {
       let formattedDate = "";
 
       if (item["Date"]) {
-        const dateParts = item["Date"].split("/");
+        const dateParts = item["Date"].split("-");
         if (dateParts.length === 3) {
           formattedDate = `${dateParts[2]}-${dateParts[1].padStart(
             2,

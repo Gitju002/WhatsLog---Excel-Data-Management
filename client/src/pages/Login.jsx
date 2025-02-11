@@ -51,7 +51,7 @@ const Login = () => {
       try {
         const response = await login(values).unwrap();
         dispatch(setCredentials({ token: response.token }));
-        navigate("/");
+        navigate(0);
       } catch (error) {
         console.error(error);
       }

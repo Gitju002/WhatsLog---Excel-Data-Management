@@ -1,11 +1,10 @@
 import { columns } from "@/components/Chat/chat-columns";
 import { DataTable } from "@/components/Chat/data-table";
 import { DatePicker } from "@/components/ui/date-picker";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2, LogOut, X } from "lucide-react";
 import { useGetChatQuery } from "@/redux/slices/chatSlice";
-import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "@/redux/slices/authSlice";
 
@@ -36,7 +35,7 @@ const Home = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/login");
+    navigate(0);
   };
 
   return (

@@ -1,4 +1,4 @@
-import { columns } from "@/components/Chat/chat-columns";
+import { getColumns } from "@/components/Chat/chat-columns";
 import { DataTable } from "@/components/Chat/data-table";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Button } from "@/components/ui/button";
@@ -7,8 +7,11 @@ import { useGetChatQuery } from "@/redux/slices/chatSlice";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "@/redux/slices/authSlice";
+import { useRole } from "@/hooks/use-role";
 
 const Home = () => {
+  const role = useRole();
+  const columns = getColumns(role);
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();

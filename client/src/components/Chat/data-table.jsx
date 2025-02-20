@@ -24,8 +24,10 @@ import { FileDown, FileText, FileUp, Search } from "lucide-react";
 import { Button } from "../ui/button";
 import { useBulkSaveChatsMutation } from "@/redux/slices/chatSlice";
 import toast from "react-hot-toast";
+import { useRole } from "@/hooks/use-role";
 
 export function DataTable({ columns, data }) {
+  const role = useRole();
   const fileInputRef = useRef(null);
   const [sorting, setSorting] = useState([]);
   const [bulkSaveChats] = useBulkSaveChatsMutation();
@@ -219,14 +221,16 @@ export function DataTable({ columns, data }) {
               className="hidden"
               onChange={importExcel}
             />
-            <Button
-              type="button"
-              size={"icon"}
-              onClick={() => fileInputRef.current?.click()}
-              disabled={isImporting}
-            >
-              <FileUp size={16} />
-            </Button>
+            {role === "admin" && (
+              <Button
+                type="button"
+                size={"icon"}
+                onClick={() => fileInputRef.current?.click()}
+                disabled={isImporting}
+              >
+                <FileUp size={16} />
+              </Button>
+            )}
           </div>
 
           <Button type="button" size={"icon"} onClick={exportToExcel}>
